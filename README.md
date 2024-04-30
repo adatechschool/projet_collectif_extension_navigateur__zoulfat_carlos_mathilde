@@ -10,3 +10,14 @@ repo git extension navigateur de Zoulfat - Carlos - Mathilde promo Emma Watson
 4 - Funny 1984 censorship, replace all the words style that arent under a certain rule book to be followed;
 
  -->
+
+
+Grandes tâches à réaliser:
+-- analyse le site pour trouver les mots triggers
+-- modifier le site pour cacher les mots et les remplacer par d'autres
+-- réfléchir au visuel de l'extension
+
+30/04/2024
+--> peer-programming pour créer le manifest et fichier script
+--> répartir les tâches 
+--> travailler chacun de son côté sur les fonctionnalités.
