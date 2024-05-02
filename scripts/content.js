@@ -19,7 +19,8 @@
 
 "use strict";
 
-let selectedElements = Array.from(
+function switchNames() {
+let selectedElements = Array.from( 
   document.querySelectorAll("h1,h2,h3,h4,h5,p,span,caption")
 );
 
@@ -35,9 +36,6 @@ filteredElements.forEach((el) => {
       `<span style="background-color: orangered"> BAR </span>`
     );
   });
+}
 
-
-
-
-
-
+switchNames()
