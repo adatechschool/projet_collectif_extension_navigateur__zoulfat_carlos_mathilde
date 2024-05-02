@@ -1,28 +1,16 @@
 {
-    "manifest_version": 2,
-    "name": "SWAP",
-    "description": "Swap Those Ugly Words! 
-    Try this extension to swap the triggering words by some funnier ones!
-    Compatible with Chrome only - for now -","version": "0.10",
-    "browser_action": {
-        "default_popup": "swap.html",
-        "default_icon": {
-            "16": "/Images/swap16.png",
-            "32": "/Images/swap32.png",
-            "128": "/Images/swap128.png"
-        }
-    },
-    "commands": {
-        "_execute_browser_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+F",
-                "mac": "MacCtrl+Shift+F"
-            }
-        }
-    },
-    "icons": {
-        "16": "/Images/swap16.png",
-        "32": "/Images/swap32.png",
-        "128": "/Images/swap128.png"
-    }
+  "manifest_version": 3,
+  "name": "Bis",
+  "version": "1.1",
+  "description": "Version test de l'extension pour le projet collectif",
+  "icons": {
+    "16": "images/swap16.png",
+    "32": "images/swap32.png",
+    "128": "images/swap128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/swap16.png"
+  },
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["script.js"] }]
 }
