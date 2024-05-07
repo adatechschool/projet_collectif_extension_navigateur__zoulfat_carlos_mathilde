@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Bis",
+    "name": "SWAP",
     "version": "1.0",
-    "description": "Version test de l'extension pour le projet collectif",
+    "description": "Swap Those Ugly Words! Try this extension to swap the triggering words by some funnier ones! Compatible with Chrome only - for now -",
     "icons": {
         "16": "images/swap16.png",
         "32": "images/swap32.png",
