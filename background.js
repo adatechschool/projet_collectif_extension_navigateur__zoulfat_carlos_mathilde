@@ -16,13 +16,18 @@ chrome.action.onClicked.addListener(async (tab) => {
         tabId: tab.id,
         text: nextState,
     });
+    
 
     if (nextState === "ON") {
-        // Insert the CSS file when the user turns the extension on
+        // Insert the JS & CSS files when the user turns the extension on
         await chrome.scripting.executeScript({
             files: ["scripts/content.js"],
             target: { tabId: tab.id },
         });
+        await chrome.scripting.insertCSS({
+             files: ["main.css"],
+             target: { tabId: tab.id},
+         });
     } else if (nextState === "OFF") {
         await chrome.tabs.reload()
     };

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+
+<body>
+  <header>
+    <h1>Swap 1.0</h1>
+    <img src="images/swap32.png">
+    <label class="switch-button" for="switch">
+      <div class="switch-outer">
+        <input id="switch" type="checkbox">
+        <div class="button">
+          <span class="button-toggle"></span>
+          <span class="button-indicator"></span>
+        </div>
+      </div>
+    </label>
+  </header>
+  <main>
+    <p>Do you want to add this word to the dictionary ?</p>
+    <form action="/action_page.php">
+      <label for="selected_word">First name:</label><br>
+      <input type="text" id="selected_word" name="selected_word"><br>
+      <label for="nicer_word">Last name:</label><br>
+      <input type="text" id="nicer_word" name="nicer_word"><br><br>
+      <input type="submit" value="Add">
+    </form>
+  </main>
+ 
+  <script src="sidepanel.js"></script>
+</body>
+
+</html>

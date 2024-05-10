@@ -1,31 +1,37 @@
 {
-    "manifest_version": 3,
-    "name": "SWAP",
-    "version": "1.0",
-    "description": "Swap Those Ugly Words! Try this extension to swap the triggering words by some funnier ones! Compatible with Chrome only - for now -",
-    "icons": {
-        "16": "images/swap16.png",
-        "32": "images/swap32.png",
-        "128": "images/swap128.png"
-    },
-    "action": {
-        "default_icon": {
-            "16": "images/swap16.png",
-            "32": "images/swap32.png",
-            "128": "images/swap128.png"
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "permissions": ["activeTab", "scripting"],
-    "commands": {
-        "_execute_action": {
-          "suggested_key": {
-            "default": "Ctrl+B",
-            "mac": "Command+B"
-          }
-        }
+  "manifest_version": 3,
+  "name": "SWAP",
+  "version": "1.0",
+  "description": "Swap Those Ugly Words! Try this extension to swap the triggering words by some funnier ones! Compatible with Chrome only - for now -",
+  "icons": {
+    "16": "images/swap16.png",
+    "32": "images/swap32.png",
+    "128": "images/swap128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/swap16.png",
+      "32": "images/swap32.png",
+      "128": "images/swap128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "sidePanel"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
       }
-
+    }
+  }
 }

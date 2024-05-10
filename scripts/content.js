@@ -94,8 +94,8 @@ const dico = {
 function switchNames() {
 /* select elements to check */
 let selectedElements = document.querySelectorAll(
-  "h1, h2, h3, h4, h5, p, span, caption, b, em, label, aria-label, yt-formatted-string, div"
-)};
+  "h1, h2, h3, h4, h5, p, span, caption, b, em, label, aria-label, yt-formatted-string, div, a"
+);
 
 // Fonction pour modifier le contenu texte de chaque élément
 function modifyTextContent(node) { /* SECOND: */
@@ -105,7 +105,7 @@ function modifyTextContent(node) { /* SECOND: */
   const modifiedWords = words.map((word) => { /* save dans const mes mots */
     const lowerCaseWord = word.toLowerCase(); /* save dans const mes mots all lower */
     if (dico.hasOwnProperty(lowerCaseWord)) { /*includes mais version objet dico */
-      return `<span class="word_style" style="background: #ffe7e8; border: 2px solid #e66465">${dico[lowerCaseWord]}</span>`; /* word_Style le mot à changer */
+      return `<span class="word_style">${dico[lowerCaseWord]}</span>`; /* word_Style le mot à changer */
     }
     return word;
   });
@@ -132,9 +132,9 @@ function swapWordsOnWebsite() {
   }
 
   /* sélection el textuels */
-  let selectedElements = document.querySelectorAll(
-    "h1, h2, h3, h4, h5, p, span, caption, b, em, label, aria-label, yt-formatted-string" /* tous les el textuels */
-  );
+  // let selectedElements = document.querySelectorAll(
+  //   "h1, h2, h3, h4, h5, p, span, caption, b, em, label, aria-label, yt-formatted-string" /* tous les el textuels */
+  // );
 
   selectedElements.forEach((el) => { /* FIRST: select les el du siteweb */ /* pas un array, mais node list, site construit comme ca*/
     // Traiter chaque nœud texte à l'intérieur de l'élément
@@ -145,17 +145,46 @@ function swapWordsOnWebsite() {
       }
     });
   });
-
+}
   switchNames();
 
 window.addEventListener("scroll", function () {
   switchNames();
 });
 
+// div pour l'icone flottante
+ const el = `<div class="x">&#x2613;</div>
+             <img src="images/swap32.png">`
+document.body.innerHTML += el
 
-window.addEventListener("mouseup", function () {
-  let highlightedEl = window.getSelection()
-  console.log("bhverlblir" + highlightedEl);
+// gestion de la séléction du texte
+function getSelectedText() {
+  var text = "";
+  if (typeof window.getSelection != "undefined") {
+      text = window.getSelection().toString();
+  } else if (
+      typeof document.selection != "undefined" &&
+      document.selection.type == "Text"
+  ) {
+      text = document.selection.createRange().text;
+  }
+  return text;
 }
-)
+
+// affiche l'icone en bas à droite du texte sélectionné
+window.addEventListener("mouseup", function () {
+  let el = document.querySelector(".x");
+  var selectedText = getSelectedText();
+  console.log(selectedText)
+    if (selectedText) {
+        el.classList.add("active");
+        el.style.left = event.pageX + "px";
+        el.style.top = event.pageY + "px";
+    } else {
+        el.classList.remove("active");
+    }
+    
+}
+ )
+
 

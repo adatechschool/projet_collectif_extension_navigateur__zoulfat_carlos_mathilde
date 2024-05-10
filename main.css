@@ -1,0 +1,21 @@
+
+.x {
+  background-color: red;
+  width: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.x.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.word_style {
+  background: -webkit-linear-gradient(rgb(12, 176, 241), rgb(235, 137, 9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
