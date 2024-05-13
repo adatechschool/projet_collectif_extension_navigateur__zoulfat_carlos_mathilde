@@ -1,7 +1,8 @@
 
 .x {
-  background-color: red;
-  width: 12px;
+  background-color: rgba(105, 189, 225, 0.565);
+ height: 100px;
+ width: 100px;
   position: absolute;
   top: 0;
   right: 0;

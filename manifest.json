@@ -13,7 +13,8 @@
       "16": "images/swap16.png",
       "32": "images/swap32.png",
       "128": "images/swap128.png"
-    }
+    },
+    "default_title": "SWAP Those Ugly Words!"
   },
   "background": {
     "service_worker": "background.js"
@@ -24,7 +25,8 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "sidePanel"
+    "sidePanel",
+    "contextMenus"
   ],
   "commands": {
     "_execute_action": {

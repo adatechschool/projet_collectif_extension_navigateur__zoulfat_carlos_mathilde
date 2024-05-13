@@ -1,7 +1,7 @@
 "use strict"; /* protéger le code des bugs JS vanilla, erreurs de types par exemple*/
 
 /* Key = Valeur JSON */
-const dico = {
+const triggerWords = {
     "abandon": "oubli de câlin",
     "abandons": "oublis de câlins",
     "abus": "câlins trop forts",
@@ -100,16 +100,13 @@ let selectedElements = document.querySelectorAll(
 // Fonction pour modifier le contenu texte de chaque élément
 function modifyTextContent(node) { /* SECOND: */
   // Séparation du contenu texte en mots
-  const words = node.textContent.split(" "); /* transform text en mot */
+  const wordOnWebsite = node.textContent.split(" "); /* transform text en mot */
   // Map chaque mot pour vérifier s'il correspond à un mot du dictionnaire
-  const modifiedWords = words.map((word) => { /* save dans const mes mots */
-    const lowerCaseWord = word.toLowerCase(); /* save dans const mes mots all lower */
-    if (dico.hasOwnProperty(lowerCaseWord)) { /*includes mais version objet dico */
-      return `<span class="word_style">${dico[lowerCaseWord]}</span>`; /* word_Style le mot à changer */
-    }
-    return word;
-  });
-  /* Cette fonction prend en entrée un nœud DOM text et remplace chaque mot contenu dans ce nœud par sa version modifiée si nécessaire. Elle utilise le dictionnaire dico pour effectuer les remplacement */
+  const modifiedWords = wordOnWebsite.map((tWord) => { /* save dans const mes mots */
+    const lowerCaseWord = tWord.toLowerCase(); /* save dans const mes mots all lower */
+    return triggerWords.hasOwnProperty(lowerCaseWord) ? `<span class="word_style">${triggerWords[lowerCaseWord]}</span>` : tWord;
+    });
+  /* Cette fonction prend en entrée un nœud DOM text et remplace chaque mot contenu dans ce nœud par sa version modifiée si nécessaire. Elle utilise le dictionnaire triggerWords pour effectuer les remplacement */
 
   // Joindre les mots en une chaîne
   const newTextContent = modifiedWords.join(" "); /* valeur repatch ce qu'on a .split */
@@ -123,10 +120,10 @@ function modifyTextContent(node) { /* SECOND: */
 
 /* Fonction pour remplacer les mots sur le site web */
 function swapWordsOnWebsite() {
-  // Utilisation de Object.keys() pour obtenir les clés de l'objet dico
-    Object.keys(dico).forEach(mot => {
+  // Utilisation de Object.keys() pour obtenir les clés de l'objet triggerWords
+    Object.keys(triggerWords).forEach(mot => {
       const regex = new RegExp("\\b" + mot + "\\b", "gmi");
-      texte = texte.replace(regex, dico[mot]);
+      texte = texte.replace(regex, triggerWords[mot]);
     });
     return texte;
   }
@@ -140,7 +137,7 @@ function swapWordsOnWebsite() {
     // Traiter chaque nœud texte à l'intérieur de l'élément
     Array.from(el.childNodes).forEach((child) => { /* transform node list en array */
       // Cette condition filtre pour que seuls les nœuds texte soient manipulés.
-      if (child.nodeType === Node.TEXT_NODE) { /* si child est text alors je call function modify sur cet enfant, peu importe si dans dico ou pas, va check apres */
+      if (child.nodeType === Node.TEXT_NODE) { /* si child est text alors je call function modify sur cet enfant, peu importe si dans triggerWords ou pas, va check apres */
         modifyTextContent(child);
       }
     });
@@ -153,8 +150,7 @@ window.addEventListener("scroll", function () {
 });
 
 // div pour l'icone flottante
- const el = `<div class="x">&#x2613;</div>
-             <img src="images/swap32.png">`
+ const el = `<div class="x">Clic droit pour ajouter la sélection au dictionnaire.</div>`
 document.body.innerHTML += el
 
 // gestion de la séléction du texte
@@ -180,11 +176,13 @@ window.addEventListener("mouseup", function () {
         el.classList.add("active");
         el.style.left = event.pageX + "px";
         el.style.top = event.pageY + "px";
+        el.addEventListener('click', function () {
+          chrome.runtime.sendMessage({ type: 'open_side_panel' })})
     } else {
         el.classList.remove("active");
     }
     
 }
- )
+ );
 
 
